@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Administrator Control Panel</h2>
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <div class="card bg-primary text-white shadow-sm">
+                <div class="card-body">
+                    <h5>Total Students</h5>
+                    <h2 class="display-4">{{ student_count }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card bg-success text-white shadow-sm">
+                <div class="card-body">
+                    <h5>Total Companies</h5>
+                    <h2 class="display-4">{{ company_count }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card bg-warning text-dark shadow-sm">
+                <div class="card-body">
+                    <h5>Active Drives</h5>
+                    <h2 class="display-4">{{ drive_count }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="card mt-4 shadow-sm">
+    <div class="card-header bg-dark text-white">Recent Activity</div>
+        <div class="card-body">
+            <p class="text-muted">No recent placement activities to display.</p>
+        </div>
+    </div>
+
+    <div class="card mt-4 shadow-sm">
+        <div class="card-header bg-warning text-dark">Pending Placement Drives</div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Job Title</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for drive in pending_drives %}
+                    <tr>
+                        <td>{{ drive.company_id }}</td> <td>{{ drive.job_title }}</td>
+                        <td>
+                            <form action="{{ url_for('approve_drive', drive_id=drive.id) }}" method="POST">
+                            <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">No pending drives to approve.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

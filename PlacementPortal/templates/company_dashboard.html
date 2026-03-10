@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Company Dashboard</h2>
+    <a href="{{ url_for('post_job') }}" class="btn btn-success mb-4">Post New Drive</a>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">Your Placement Drives</div>
+        <div class="card-body">
+            <table class="table">
+                <thead><tr><th>Job Title</th><th>Status</th></tr></thead>
+                <tbody>
+                    {% for drive in drives %}
+                    <tr>
+                        <td>{{ drive.job_title }}</td>
+                        <td>{{ drive.status }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-secondary text-white">Applicant Tracking</div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr><th>Student</th><th>Qualification</th><th>Drive</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                    {% for app in applications %}
+                    <tr>
+                        <td>{{ app.student.username }}</td>
+                        <td>{{ app.student.qualification }}</td> <td>{{ app.drive.job_title }}</td>
+                        <td><span class="badge bg-info">{{ app.status }}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body text-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="100" class="mb-3">
+                <h4>{{ current_user.username }}</h4>
+                <p class="text-muted">Role: {{ current_user.role }}</p>
+                <button class="btn btn-outline-primary btn-sm">Edit Profile</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Placement Status</h5>
+                <hr>
+                <div class="alert alert-info">
+                    <strong>Notice:</strong> No active placement drives joined yet. Check back soon!
+                </div>
+                <table class="table table-hover mt-3">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Company</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3" class="text-center text-muted">You haven't applied to any drives.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
